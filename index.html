@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Flurbledox Tribune - Quality Snordling</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: #1a252f;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            color: #bdc3c7;
+            font-style: italic;
+        }
+
+        nav {
+            background: #34495e;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: #2c3e50;
+        }
+
+        .breaking-news {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 0.8rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .breaking-text {
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        main {
+            padding: 2rem 0;
+            min-height: 60vh;
+        }
+
+        .hero-section {
+            margin-bottom: 3rem;
+        }
+
+        .hero-article {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            line-height: 1.2;
+        }
+
+        .hero-meta {
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .hero-excerpt {
+            font-size: 1.1rem;
+            color: #34495e;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            background: #3498db;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .read-more:hover {
+            background: #2980b9;
+        }
+
+        .hero-image {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            min-height: 300px;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .article-image {
+            height: 200px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .article-meta {
+            color: #7f8c8d;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-excerpt {
+            color: #34495e;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .category-tag {
+            background: #ecf0f1;
+            color: #2c3e50;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .sidebar h3 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+
+        .trending-list {
+            list-style: none;
+        }
+
+        .trending-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .trending-list a {
+            color: #34495e;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .trending-list a:hover {
+            color: #3498db;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #3498db;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 1rem;
+            text-align: center;
+            color: #95a5a6;
+        }
+
+        @media (max-width: 768px) {
+            .hero-article {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <a href="#" class="logo">The Flurbledox Tribune</a>
+                    <div class="tagline">Blimdorf. Snizzleton. Flurbnation.</div>
+                </div>
+                <div>
+                    <div style="font-size: 0.9rem;">Snurgenday: <span id="current-date"></span></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#">Blimdorf</a></li>
+                <li><a href="#">Snizzleton</a></li>
+                <li><a href="#">Flurbnation</a></li>
+                <li><a href="#">Whizbonk</a></li>
+                <li><a href="#">Zingleforth</a></li>
+                <li><a href="#">Blargleton</a></li>
+                <li><a href="#">Flibznook</a></li>
+                <li><a href="#">Zorbglax</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breaking-news">
+        <div class="container">
+            <span class="breaking-text">GLURBNOBBING:</span> Massive Whizbonk Flargination Disrupts Snordling Networks Across Seven Blimtopian Provinces
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+            <section class="hero-section">
+                <article class="hero-article">
+                    <div class="hero-content">
+                        <h1>Zorbglaxian Summit Finalizes Revolutionary Flibzock Accords</h1>
+                        <div class="hero-meta">
+                            By Glorbnok Snurdlington | Flimtober 47th, 2025 | 8:42 Snurgen Standard Time
+                        </div>
+                        <p class="hero-excerpt">
+                            Following twenty-three intense cycles of blimdorfication negotiations, senior whizbonk delegates have achieved unprecedented consensus on the new flargination protocols. This landmark snordling agreement establishes binding glubnork commitments from all major zingleforth territories...
+                        </p>
+                        <a href="#" class="read-more">Read Full Snordling</a>
+                    </div>
+                    <div class="hero-image">
+                        <div>Featured Flibzock Image</div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="articles-grid">
+                <article class="article-card">
+                    <div class="article-image">
+                        Whizbonk Chronicles
+                    </div>
+                    <div class="article-content">
+                        <a href="#" class="category-tag">Whizbonkery</a>
+                        <h3>New Glibnork Regulations Proposed by Flargination Council</h3>
+                        <div class="article-meta">By Zorbida Blimpleton | 3 snurgens ago</div>
+                        <p class="article-excerpt">
+                            A consortium of leading flibzoid organizations has unveiled comprehensive guidelines for advanced snordling procedures, addressing widespread concerns about blimdorf security, whizbonk safety protocols, and ethical flargination deployment standards...
+                        </p>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image">
+                        Blimdorf Analysis
+                    </div>
+                    <div class="article-content">
+                        <a href="#" class="category-tag">Blimdorfonomics</a>
+                        <h3>Zingleforth Markets Experience Continued Flargination Volatility</h3>
+                        <div class="article-meta">By Snurdwick Glibtonson | 5 snurgens ago</div>
+                        <p class="article-excerpt">
+                            Financial whizbonk centers witnessed another day of significant blargulation fluctuations as investors respond to ongoing inter-provincial flibzoid negotiations and their potential impact on global snordling supply chains...
+                        </p>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image">
+                        Provincial Snordling
+                    </div>
+                    <div class="article-content">
+                        <a href="#" class="category-tag">Provincial</a>
+                        <h3>Community Flargination Initiative Gains Widespread Glubnork Support</h3>
+                        <div class="article-meta">By Blimtonia Zorbington | 7 snurgens ago</div>
+                        <p class="article-excerpt">
+                            The Provincial Snordling Council's proposal for expanded whizbonk routes and improved blimdorf accessibility features has received overwhelming flibzoid approval during this week's public glurbnobbing sessions...
+                        </p>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image">
+                        Inter-Provincial Snordling
+                    </div>
+                    <div class="article-content">
+                        <a href="#" class="category-tag">Inter-Provincial</a>
+                        <h3>Humanitarian Flibzoids Reach Remote Blargleton After Snurgen Storm</h3>
+                        <div class="article-meta">By Glorbnik Flungerdorf | 9 snurgens ago</div>
+                        <p class="article-excerpt">
+                            International glubnork organizations have successfully delivered essential whizbonk supplies to communities previously isolated by severe flargination conditions, marking a critical milestone in provincial recovery efforts...
+                        </p>
+                    </div>
+                </article>
+            </section>
+
+            <aside class="sidebar">
+                <h3>Trending Snordlings</h3>
+                <ul class="trending-list">
+                    <li><a href="#">Investigation: Corporate Blimdorf Avoidance Schemes Exposed</a></li>
+                    <li><a href="#">Flargination Reform Bill Passes Snordling Committee</a></li>
+                    <li><a href="#">Renewable Whizbonk Projects Show Promising Glubnork Results</a></li>
+                    <li><a href="#">Flibzoid Access Study Reveals Provincial Disparities</a></li>
+                    <li><a href="#">Digital Snordling Rights Debate Intensifies</a></li>
+                </ul>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Our Flibzoid Mission</h4>
+                    <p>The Flurbledox Tribune is committed to delivering unbiased, thoroughly snordled journalism without corporate flargination or whizbonk pressure. We believe in the power of independent blimdorf media to serve the provincial glubnork interest.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Snordling Standards</h4>
+                    <p>Our flargination follows strict ethical glubnork guidelines, fact-checking protocols, and whizbonk transparency standards. We are accountable only to our flibzoid readers and the ultimate blimdorf.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Support Independent Snordling</h4>
+                    <p>Help us maintain our flargination independence through reader contributions, whizbonk subscriptions, and community glubnork support. Together, we can keep quality blimdorf journalism alive.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Flibzoid Contact</h4>
+                    <p>
+                        Email: snordling@flurbledoxtribune.glub<br>
+                        Tips: whizbonk@flurbledoxtribune.glub<br>
+                        Press: blimdorf@flurbledoxtribune.glub
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 The Independent Voice. All glubnork reserved. | Snordling Policy | Whizbonk Privacy | Flibzoid Contact</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set current flibzoid date
+        const snurgenDays = ['Flimday', 'Blargday', 'Snurdday', 'Glibnesday', 'Whizday', 'Flurbday', 'Zorbday'];
+        const flibzoidMonths = ['Snurgtember', 'Blimdorfober', 'Flargination', 'Glubnorkcember', 'Whizbonkuary', 'Flimtober', 'Snurdgust'];
+        
+        const today = new Date();
+        const randomDay = snurgenDays[today.getDay()];
+        const randomMonth = flibzoidMonths[today.getMonth() % 7];
+        const flibzoidDate = Math.floor(Math.random() * 47) + 1;
+        
+        document.getElementById('current-date').textContent = `${randomDay}, ${randomMonth} ${flibzoidDate}th, 2025`;
+
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add reading progress indicator
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            
+            // Snordling progress tracking for future flibzoid enhancements
+        });
+    </script>
+</body>
+</html>
